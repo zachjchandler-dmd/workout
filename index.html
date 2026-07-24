@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Father–Son Workout</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Workout">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<style>
+  :root{
+    --ink:#1f2933; --muted:#5c6b7a; --line:#e4e9ef;
+    --card:#ffffff; --bg:#eef2f6; --accent:#2f6fd0;
+    --son:#2f6fd0; --dad:#7b46c9; --fun:#fff6e0; --funline:#f0b429;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;-webkit-text-size-adjust:100%}
+  .wrap{max-width:680px;margin:0 auto;padding:18px 14px 40px}
+  header.hero{background:linear-gradient(135deg,#2f6fd0,#4a8f5c);color:#fff;
+    border-radius:18px;padding:22px 20px;box-shadow:0 6px 18px rgba(31,41,51,.12)}
+  header.hero .kick{font-size:13px;letter-spacing:.06em;text-transform:uppercase;opacity:.9;margin:0}
+  header.hero h1{margin:4px 0 6px;font-size:24px;line-height:1.2}
+  header.hero .type{display:inline-block;background:rgba(255,255,255,.22);
+    padding:4px 12px;border-radius:999px;font-weight:600;font-size:14px}
+  .gear{margin:14px 0 0;font-size:13.5px;opacity:.95}
+  .gear b{opacity:1}
+  .suggestion{background:var(--card);border:1px dashed var(--accent);border-radius:14px;
+    padding:12px 15px;margin:14px 0 4px;font-size:13.5px;color:var(--ink)}
+  .suggestion b{color:var(--accent)}
+  .legend{background:var(--card);border-radius:14px;padding:14px 16px;margin:16px 0;
+    box-shadow:0 2px 8px rgba(31,41,51,.06);border:1px solid var(--line)}
+  .legend h2{margin:0 0 10px;font-size:15px}
+  .legend ul{list-style:none;margin:0;padding:0;display:grid;
+    grid-template-columns:1fr 1fr;gap:7px 14px;font-size:12.5px;color:var(--muted)}
+  .legend li{display:flex;align-items:center;gap:8px}
+  .sw{width:16px;height:16px;flex:0 0 16px;display:inline-block}
+  .card{background:var(--card);border-radius:16px;padding:18px 18px 16px;margin:14px 0;
+    box-shadow:0 2px 10px rgba(31,41,51,.07);border:1px solid var(--line);break-inside:avoid}
+  @media print{body{background:#fff}.card,.legend,header.hero{box-shadow:none}}
+  .time{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent);
+    padding:3px 10px;border-radius:999px;letter-spacing:.02em}
+  .card.sa .time{background:#c2410c}
+  .card.game .time{background:#4a8f5c}
+  .card.cool .time{background:#5c6b7a}
+  .card h3{margin:10px 0 8px;font-size:19px}
+  .card p{margin:7px 0}
+  .lbl{font-weight:700;color:var(--ink)}
+  .cues{margin:8px 0 0;padding-left:18px;font-size:14px}
+  .cues li{margin:2px 0}
+  .fun{background:var(--fun);border-left:4px solid var(--funline);border-radius:8px;
+    padding:10px 13px;margin:12px 0 4px;font-size:14px}
+  .fun b{color:#a15c00}
+  figure{margin:12px 0 0}
+  svg{width:100%;height:auto;border-radius:12px;display:block;
+    border:1px solid rgba(0,0,0,.08)}
+  figcaption{font-size:12px;color:var(--muted);margin-top:6px;text-align:center;font-style:italic}
+  .footer{margin-top:20px;background:#1f2933;color:#e4e9ef;border-radius:14px;
+    padding:16px 18px;font-size:13.5px}
+  .footer b{color:#fff}
+  .txt-lo{font-size:9px;fill:#fff;paint-order:stroke;stroke:#26492f;stroke-width:2px;
+    stroke-linejoin:round;font-weight:700}
+  .plabel{font-size:9px;fill:#fff;font-weight:800;text-anchor:middle;dominant-baseline:central}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- shared svg defs: turf pattern + arrowheads -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <pattern id="turf" width="44" height="44" patternUnits="userSpaceOnUse">
+        <rect width="44" height="44" fill="#4a8f5c"/>
+        <rect width="22" height="44" fill="#458457"/>
+      </pattern>
+      <marker id="aw" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#ffffff"/></marker>
+      <marker id="ay" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#f2d024"/></marker>
+    </defs>
+  </svg>
+
+  <header class="hero">
+    <p class="kick">Friday · July 24, 2026</p>
+    <h1>Father–Son Session</h1>
+    <span class="type">⚽ Soccer Skills Day · ~60 min · Session #1</span>
+    <p class="gear"><b>Gear today:</b> cones · speed sticks · trapezoid hurdles · soccer balls · rebounding wall</p>
+  </header>
+
+  <div class="suggestion" style="border-style:solid;border-color:#4a8f5c">
+    <b style="color:#2f7a45">First session — keep it light &amp; fun.</b> This is your very first workout together, so treat every time and rep target below as a ceiling, not a goal. Do fewer reps, stop each drill while he's still enjoying it, and let him win a little. The #1 job today is that he finishes wanting to come back Monday.
+  </div>
+
+  <div class="suggestion">
+    <b>Optional gear idea (1 per week):</b> a $15–20 pop-up mini goal. It makes King of the Hill and the shooting challenge feel like a real match and gives your son a target to celebrate scoring on. Totally optional — everything today works with cones as goals.
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <h2>Symbol legend</h2>
+    <ul>
+      <li><svg class="sw" viewBox="0 0 16 16"><path d="M8,2 L14,13 L2,13 Z" fill="#e8862e" stroke="#b5641c"/></svg> Cone</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><rect x="7" y="2" width="3" height="12" rx="1.5" fill="#f2d024"/></svg> Speed stick (pole)</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><path d="M2,12 L14,12 L11,4 L5,4 Z" fill="none" stroke="#3b7dd8" stroke-width="2"/></svg> Trapezoid hurdle</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#2f6fd0"/><text x="8" y="8" class="plabel">S</text></svg> Son</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#7b46c9"/><text x="8" y="8" class="plabel">D</text></svg> Dad</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5" fill="#fff" stroke="#333"/></svg> Ball</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><line x1="2" y1="8" x2="12" y2="8" stroke="#fff" stroke-width="2" marker-end="url(#aw)"/></svg> Running path</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><line x1="2" y1="8" x2="12" y2="8" stroke="#fff" stroke-width="2" stroke-dasharray="3 2" marker-end="url(#aw)"/></svg> Ball path</li>
+      <li><svg class="sw" viewBox="0 0 16 16"><line x1="2" y1="8" x2="12" y2="8" stroke="#f2d024" stroke-width="2" marker-end="url(#ay)"/></svg> Return / 2nd move</li>
+    </ul>
+  </div>
+
+  <!-- WARM-UP 1 -->
+  <div class="card">
+    <span class="time">0:00–0:05 · Warm-Up Part 1</span>
+    <h3>Shadow Dribble (Follow the Leader)</h3>
+    <p><span class="lbl">Setup:</span> Mark a 15×15 yd box with a cone at each corner. Each of you has your own ball. One is the leader, the other shadows ~2 yds behind. Works perfectly with just two people.</p>
+    <p><span class="lbl">How it works:</span> The leader dribbles freely around the box — changing direction, speed, and throwing in moves (a roll, a cut, a sudden stop) — while the follower copies everything with their own ball, staying a couple yards behind. Swap leader every 45 seconds so you each get to lead.</p>
+    <ul class="cues">
+      <li>Soft, close touches — the ball stays "on a string."</li>
+      <li>Head up to watch the leader, quick peeks down at the ball.</li>
+      <li>Use <b>both feet</b> and react fast to every change.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> The leader gets to be silly — spin moves, tiptoe steps, a sudden freeze, even a little dance over the ball. The follower has to copy the goofiest thing without losing control of their own ball.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="Son shadowing Dad's winding dribble route in a 15 yard box, each with a ball">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <rect x="30" y="20" width="260" height="150" fill="none" stroke="#fff" stroke-width="2" opacity=".85"/>
+        <!-- corner cones -->
+        <path d="M30,20 l5,10 l-10,0 Z" fill="#e8862e"/><path d="M290,20 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M30,170 l5,-10 l-10,0 Z" fill="#e8862e"/><path d="M290,170 l5,-10 l-10,0 Z" fill="#e8862e"/>
+        <text x="160" y="14" class="txt-lo" text-anchor="middle">15 × 15 yd box</text>
+        <!-- winding leader route -->
+        <path d="M80,150 C120,150 120,95 165,95 S225,70 245,52" fill="none" stroke="#fff" stroke-width="2.5" marker-end="url(#aw)"/>
+        <!-- follower son + ball -->
+        <circle cx="90" cy="150" r="11" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="90" y="150" class="plabel">S</text>
+        <circle cx="104" cy="152" r="5" fill="#fff" stroke="#333"/>
+        <!-- leader dad + ball ahead -->
+        <circle cx="210" cy="80" r="11" fill="#7b46c9" stroke="#fff" stroke-width="1.5"/><text x="210" y="80" class="plabel">D</text>
+        <circle cx="224" cy="74" r="5" fill="#fff" stroke="#333"/>
+        <!-- copy arrow -->
+        <line x1="120" y1="140" x2="150" y2="112" stroke="#f2d024" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ay)"/>
+        <text x="160" y="182" class="txt-lo" text-anchor="middle">stay ~2 yds behind · copy every move</text>
+      </svg>
+      <figcaption>Both dribble their own ball; Son shadows Dad's winding route ~2 yds back.</figcaption>
+    </figure>
+  </div>
+
+  <!-- WARM-UP 2 -->
+  <div class="card">
+    <span class="time">0:05–0:10 · Warm-Up Part 2</span>
+    <h3>Mirror Match (reaction / stop-start)</h3>
+    <p><span class="lbl">Setup:</span> No ball. Stand ~3 yds apart facing each other inside a 6×6 yd square marked by 4 cones. One of you is the "leader."</p>
+    <p><span class="lbl">How it works:</span> The leader shuffles left, right, forward, back, and freezes at random; the follower mirrors every move like a reflection. Hold each freeze for a beat, then explode into the next direction. Swap leader every 45 seconds.</p>
+    <ul class="cues">
+      <li>Stay low — <b>bend the knees</b>, weight on the balls of your feet.</li>
+      <li>Quick, choppy steps; don't cross your feet.</li>
+      <li>React on the <b>first flinch</b>, not after.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Add silly freeze poses (flamingo, superhero, statue). If the follower matches the pose within 2 seconds, they steal a point.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="Two players mirroring lateral movement in a 6 yard square">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <path d="M60,40 l5,10 l-10,0 Z" fill="#e8862e"/><path d="M260,40 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M60,160 l5,-10 l-10,0 Z" fill="#e8862e"/><path d="M260,160 l5,-10 l-10,0 Z" fill="#e8862e"/>
+        <text x="160" y="182" class="txt-lo" text-anchor="middle">6 × 6 yd square</text>
+        <!-- leader dad left, follower son right -->
+        <circle cx="120" cy="100" r="11" fill="#7b46c9" stroke="#fff" stroke-width="1.5"/><text x="120" y="100" class="plabel">D</text>
+        <circle cx="200" cy="100" r="11" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="200" y="100" class="plabel">S</text>
+        <text x="160" y="96" class="txt-lo" text-anchor="middle">3 yds</text>
+        <!-- lateral shuffle arrows -->
+        <line x1="120" y1="72" x2="120" y2="55" stroke="#fff" stroke-width="2.5" marker-end="url(#aw)"/>
+        <line x1="120" y1="128" x2="120" y2="145" stroke="#fff" stroke-width="2.5" marker-end="url(#aw)"/>
+        <line x1="200" y1="72" x2="200" y2="55" stroke="#f2d024" stroke-width="2.5" marker-end="url(#ay)"/>
+        <line x1="200" y1="128" x2="200" y2="145" stroke="#f2d024" stroke-width="2.5" marker-end="url(#ay)"/>
+      </svg>
+      <figcaption>Dad leads (white); Son mirrors every move (yellow).</figcaption>
+    </figure>
+  </div>
+
+  <!-- TECH 1 -->
+  <div class="card">
+    <span class="time">0:10–0:15 · Technical Block</span>
+    <h3>Sole-Roll Ball Mastery</h3>
+    <p><span class="lbl">Setup:</span> Each of you with your own ball, standing a few yards apart in open space. No cones needed.</p>
+    <p><span class="lbl">How it works:</span> Roll the ball side-to-side under one foot's sole, then switch feet — 20 rolls each. Then "toe taps" (light taps on top of the ball, alternating feet) for 30 seconds, then "roll &amp; push" (sole-roll the ball across your body and receive with the other foot). Do 3 quick rounds.</p>
+    <ul class="cues">
+      <li>Stay light on the toes — <b>soft touches</b>, ball stays close.</li>
+      <li>Look up between reps to build "head-up" habits.</li>
+      <li>Both feet get equal reps — the weaker foot too.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Race to 20 toe taps — first to finish yells "Messi!" Loser of each round picks the next silly move to add.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="Two players doing sole rolls, ball moving side to side">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <!-- son -->
+        <circle cx="95" cy="95" r="12" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="95" y="95" class="plabel">S</text>
+        <circle cx="95" cy="128" r="6" fill="#fff" stroke="#333"/>
+        <line x1="76" y1="128" x2="60" y2="128" stroke="#fff" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#aw)"/>
+        <line x1="114" y1="128" x2="130" y2="128" stroke="#f2d024" stroke-width="2" marker-end="url(#ay)"/>
+        <text x="95" y="152" class="txt-lo" text-anchor="middle">roll L ↔ R</text>
+        <!-- dad -->
+        <circle cx="225" cy="95" r="12" fill="#7b46c9" stroke="#fff" stroke-width="1.5"/><text x="225" y="95" class="plabel">D</text>
+        <circle cx="225" cy="128" r="6" fill="#fff" stroke="#333"/>
+        <line x1="206" y1="128" x2="190" y2="128" stroke="#fff" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#aw)"/>
+        <line x1="244" y1="128" x2="260" y2="128" stroke="#f2d024" stroke-width="2" marker-end="url(#ay)"/>
+        <text x="225" y="152" class="txt-lo" text-anchor="middle">own ball each</text>
+      </svg>
+      <figcaption>Ball rolls side-to-side under the sole; both work their own ball.</figcaption>
+    </figure>
+  </div>
+
+  <!-- TECH 2 -->
+  <div class="card">
+    <span class="time">0:15–0:20 · Technical Block</span>
+    <h3>Rebounder Wall One-Touch</h3>
+    <p><span class="lbl">Setup:</span> Stand ~5 yds from the rebounding wall with one ball. Place a cone where you're standing so you keep the distance honest.</p>
+    <p><span class="lbl">How it works:</span> Pass firmly into the wall with the inside of the foot, then <b>receive the return with one touch</b> and pass straight back — see how many clean one-touches you can string together. Then try alternating feet each pass. Take turns and count your best streak.</p>
+    <ul class="cues">
+      <li>Strike through the <b>middle of the ball</b>, ankle locked.</li>
+      <li>Open your hips so the returning ball meets a cushioned foot.</li>
+      <li>Small "prep step" before each touch to stay balanced.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Play "don't break the chain" — count one-touches out loud together; a new team-best streak earns a victory handshake you invent.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="Player passing into a rebounding wall from five yards and receiving">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <!-- wall -->
+        <rect x="40" y="30" width="14" height="130" fill="#8a5a2b" stroke="#5f3d1c" stroke-width="2"/>
+        <text x="30" y="98" class="txt-lo" text-anchor="middle" transform="rotate(-90 30 98)">rebound wall</text>
+        <!-- player + cone at 5 yds -->
+        <path d="M210,150 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <circle cx="230" cy="95" r="12" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="230" y="95" class="plabel">S</text>
+        <circle cx="212" cy="95" r="6" fill="#fff" stroke="#333"/>
+        <text x="150" y="182" class="txt-lo" text-anchor="middle">5 yds from wall</text>
+        <!-- pass to wall (dashed) -->
+        <line x1="200" y1="88" x2="58" y2="78" stroke="#fff" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#aw)"/>
+        <!-- return (yellow dashed) -->
+        <line x1="58" y1="110" x2="200" y2="104" stroke="#f2d024" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ay)"/>
+      </svg>
+      <figcaption>Pass in (white), one-touch the return back (yellow), keep the chain alive.</figcaption>
+    </figure>
+  </div>
+
+  <!-- TECH 3 -->
+  <div class="card">
+    <span class="time">0:20–0:25 · Technical Block</span>
+    <h3>L-Cut Cone Dribble</h3>
+    <p><span class="lbl">Setup:</span> Lay 4 cones in an "L": three cones 3 yds apart in a line, then the path turns 90° with two more cones 3 yds apart. One ball, take turns.</p>
+    <p><span class="lbl">How it works:</span> Dribble to the corner cone, then use the <b>inside or outside of the foot to cut sharply</b> around it and accelerate down the new line. Focus on a clean change of direction, then a burst out of the turn. Run it 4–5 times each, trying both cutting feet.</p>
+    <ul class="cues">
+      <li>Slow into the cut, <b>fast out</b> of it.</li>
+      <li>Chop the ball with a firm touch; don't let it drift wide.</li>
+      <li>First touch after the turn goes into space, not into your feet.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Time each run with a phone stopwatch and post a "family record." Beating your own best (not each other) is the win.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="L-shaped cone dribble path with a sharp cut at the corner">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <!-- line cones -->
+        <path d="M50,150 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M120,150 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M200,150 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <!-- turn cones going up -->
+        <path d="M200,90 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M200,40 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <!-- start player + ball -->
+        <circle cx="40" cy="130" r="11" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="40" y="130" class="plabel">S</text>
+        <circle cx="54" cy="133" r="5" fill="#fff" stroke="#333"/>
+        <!-- path along bottom then cut up -->
+        <path d="M56,140 L196,150" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="5 3"/>
+        <path d="M196,150 Q205,150 205,120 L205,55" fill="none" stroke="#f2d024" stroke-width="2.5" stroke-dasharray="5 3" marker-end="url(#ay)"/>
+        <text x="120" y="176" class="txt-lo" text-anchor="middle">3 yds · 3 yds</text>
+        <text x="235" y="100" class="txt-lo" text-anchor="middle">sharp cut ↑</text>
+      </svg>
+      <figcaption>Dribble the base (white), cut hard at the corner, accelerate up the L (yellow).</figcaption>
+    </figure>
+  </div>
+
+  <!-- S&A 1 -->
+  <div class="card sa">
+    <span class="time">0:25–0:33 · Speed &amp; Agility</span>
+    <h3>Speed-Stick + Trapezoid Combo Course</h3>
+    <p><span class="lbl">Setup:</span> Lay 5 speed sticks 1.5 ft apart for quick feet, then 3 trapezoid hurdles ~1 yd apart, then two cones marking a 10 yd sprint finish. No ball for this one.</p>
+    <p><span class="lbl">How it works:</span> Fast feet through the sticks (one step between each), high knees over the hurdles, then <b>explode into a 10 yd sprint</b> through the finish cones. Walk back to recover. 4–5 runs each, alternating so no one waits long.</p>
+    <ul class="cues">
+      <li>Sticks = <b>quick and light</b>; hurdles = knees up, arms driving.</li>
+      <li>Run tall through the sprint — pump the arms.</li>
+      <li>Full effort for ~6 seconds, then full recovery walking back.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Dad calls out a "power word" (Rocket! Cheetah! Turbo!) right as your son hits the last hurdle — he sprints the finish on the shout.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="Speed sticks then trapezoid hurdles then a ten yard sprint to finish cones">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <!-- speed sticks -->
+        <rect x="30" y="60" width="4" height="60" rx="2" fill="#f2d024"/>
+        <rect x="48" y="60" width="4" height="60" rx="2" fill="#f2d024"/>
+        <rect x="66" y="60" width="4" height="60" rx="2" fill="#f2d024"/>
+        <rect x="84" y="60" width="4" height="60" rx="2" fill="#f2d024"/>
+        <rect x="102" y="60" width="4" height="60" rx="2" fill="#f2d024"/>
+        <text x="66" y="52" class="txt-lo" text-anchor="middle">quick feet</text>
+        <!-- trapezoid hurdles -->
+        <path d="M132,110 L156,110 L150,80 L138,80 Z" fill="none" stroke="#3b7dd8" stroke-width="2.5"/>
+        <path d="M162,110 L186,110 L180,80 L168,80 Z" fill="none" stroke="#3b7dd8" stroke-width="2.5"/>
+        <path d="M192,110 L216,110 L210,80 L198,80 Z" fill="none" stroke="#3b7dd8" stroke-width="2.5"/>
+        <text x="174" y="72" class="txt-lo" text-anchor="middle">high knees</text>
+        <!-- finish cones -->
+        <path d="M285,60 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M285,120 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <!-- path -->
+        <path d="M20,95 L112,95" stroke="#fff" stroke-width="2.5" fill="none" marker-end="url(#aw)"/>
+        <path d="M118,95 L224,95" stroke="#fff" stroke-width="2.5" fill="none" marker-end="url(#aw)"/>
+        <path d="M228,95 L282,95" stroke="#fff" stroke-width="3" fill="none" marker-end="url(#aw)"/>
+        <text x="255" y="150" class="txt-lo" text-anchor="middle">10 yd sprint</text>
+        <text x="255" y="164" class="txt-lo" text-anchor="middle">→ finish</text>
+      </svg>
+      <figcaption>Sticks → hurdles → explode through the 10 yd sprint finish.</figcaption>
+    </figure>
+  </div>
+
+  <!-- S&A 2 -->
+  <div class="card sa">
+    <span class="time">0:33–0:40 · Speed &amp; Agility</span>
+    <h3>Curved Acceleration Races (with handicap)</h3>
+    <p><span class="lbl">Setup:</span> Set a gentle curved lane with 4 cones arcing from a start line to a finish ~15 yds away. Two side-by-side start spots — Dad starts a few yards <b>behind</b> to even things out.</p>
+    <p><span class="lbl">How it works:</span> On "Go!", both race along the curve to the finish. The curve teaches leaning into acceleration and running on the balls of the feet. Best of 5 races. Adjust Dad's handicap so it stays a real contest.</p>
+    <ul class="cues">
+      <li>First 3 steps are short and <b>punchy</b> — drive the ground away.</li>
+      <li>Lean slightly into the curve, eyes up to the finish.</li>
+      <li>Run <b>through</b> the finish line, don't slow early.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Winner of each race picks Dad's next handicap — hopping starts, backward start, or "sing a line before you run." Keeps every race a new challenge.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="Curved sprint lane with son and dad racing, dad handicapped behind">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <!-- arc cones -->
+        <path d="M60,150 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M110,110 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M180,80 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M255,60 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <!-- finish line -->
+        <line x1="270" y1="45" x2="270" y2="90" stroke="#fff" stroke-width="2" stroke-dasharray="3 3"/>
+        <text x="272" y="40" class="txt-lo">finish</text>
+        <!-- son at start -->
+        <circle cx="45" cy="150" r="11" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="45" y="150" class="plabel">S</text>
+        <!-- dad behind (handicap) -->
+        <circle cx="40" cy="172" r="11" fill="#7b46c9" stroke="#fff" stroke-width="1.5"/><text x="40" y="172" class="plabel">D</text>
+        <text x="95" y="184" class="txt-lo">Dad starts ~3 yds back</text>
+        <!-- curved race path -->
+        <path d="M56,146 C110,120 190,90 262,68" fill="none" stroke="#fff" stroke-width="2.5" marker-end="url(#aw)"/>
+        <text x="150" y="100" class="txt-lo" text-anchor="middle">~15 yd curve</text>
+      </svg>
+      <figcaption>Race the arc to the finish; Dad's stagger keeps it close.</figcaption>
+    </figure>
+  </div>
+
+  <!-- GAME 1 -->
+  <div class="card game">
+    <span class="time">0:40–0:48 · Game Application</span>
+    <h3>1v1 King of the Hill</h3>
+    <p><span class="lbl">Setup:</span> One small goal made of two cones (2 yds wide) in a ~10×15 yd area. One ball. Dad defends the goal; son attacks.</p>
+    <p><span class="lbl">How it works:</span> Son tries to beat Dad 1v1 and score. Score a goal and you stay "King" and go again; get dispossessed and you swap roles. Use the cuts and close control from the technical block to get past the defender. Play to 5 goals, then Dad defends "for real" but still gives fair chances.</p>
+    <ul class="cues">
+      <li>Attack the defender's <b>front foot</b>, then cut the other way.</li>
+      <li>Change of pace beats the defender — slow, then explode.</li>
+      <li>Keep the ball on the far foot from the defender.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Every goal gets a named celebration your son invents; Dad has to copy it. Announce the score dramatically like a match commentator.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="One versus one to a small cone goal, son attacking dad defending">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <rect x="30" y="25" width="260" height="140" fill="none" stroke="#fff" stroke-width="1.5" opacity=".8"/>
+        <!-- goal cones right -->
+        <path d="M282,80 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M282,110 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <text x="278" y="150" class="txt-lo" text-anchor="middle">2 yd goal</text>
+        <!-- dad defender -->
+        <circle cx="235" cy="95" r="11" fill="#7b46c9" stroke="#fff" stroke-width="1.5"/><text x="235" y="95" class="plabel">D</text>
+        <!-- son attacker + ball -->
+        <circle cx="90" cy="120" r="11" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="90" y="120" class="plabel">S</text>
+        <circle cx="104" cy="122" r="5" fill="#fff" stroke="#333"/>
+        <!-- run path with a cut -->
+        <path d="M106,118 C150,110 170,70 200,72" fill="none" stroke="#fff" stroke-width="2.5" marker-end="url(#aw)"/>
+        <!-- shot to goal (dashed) -->
+        <path d="M204,74 L280,92" fill="none" stroke="#f2d024" stroke-width="2.5" stroke-dasharray="5 3" marker-end="url(#ay)"/>
+        <text x="150" y="18" class="txt-lo" text-anchor="middle">10 × 15 yd area</text>
+      </svg>
+      <figcaption>Son dribbles and cuts past Dad (white), then finishes into the cone goal (yellow shot).</figcaption>
+    </figure>
+  </div>
+
+  <!-- GAME 2 -->
+  <div class="card game">
+    <span class="time">0:48–0:55 · Game Application</span>
+    <h3>Target Shooting Challenge</h3>
+    <p><span class="lbl">Setup:</span> Make a bigger cone goal (4 yds wide) and place a small cone just inside each post as "targets." Shoot from ~8 yds. Dad can play a friendly keeper.</p>
+    <p><span class="lbl">How it works:</span> Each shot: <b>1 point in the goal, 3 points for hitting a corner target cone.</b> Take a controlling touch, then strike with a locked ankle at the target. 5 shots each per round; first to 15 points wins. Rotate who keeps.</p>
+    <ul class="cues">
+      <li>Plant foot beside the ball, pointing at the target.</li>
+      <li>Strike with the <b>laces</b>, follow through toward the corner.</li>
+      <li>Placement over power — aim first, then add pace.</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> Call your shot before you take it ("top corner!"). Calling it AND making it is worth a bonus point and full bragging rights.</div>
+    <figure>
+      <svg viewBox="0 0 320 190" role="img" aria-label="Shooting from eight yards at a four yard goal with corner target cones">
+        <rect width="320" height="190" fill="url(#turf)"/>
+        <!-- goal posts -->
+        <path d="M60,45 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <path d="M60,135 l5,10 l-10,0 Z" fill="#e8862e"/>
+        <line x1="60" y1="50" x2="60" y2="140" stroke="#fff" stroke-width="2" stroke-dasharray="3 3"/>
+        <text x="45" y="98" class="txt-lo" text-anchor="middle" transform="rotate(-90 45 98)">4 yd goal</text>
+        <!-- target cones inside corners -->
+        <path d="M78,60 l4,8 l-8,0 Z" fill="#e8862e"/><text x="92" y="66" class="txt-lo">3 pts</text>
+        <path d="M78,125 l4,8 l-8,0 Z" fill="#e8862e"/><text x="92" y="132" class="txt-lo">3 pts</text>
+        <!-- keeper dad -->
+        <circle cx="95" cy="95" r="11" fill="#7b46c9" stroke="#fff" stroke-width="1.5"/><text x="95" y="95" class="plabel">D</text>
+        <!-- shooter son + ball at 8 yds -->
+        <circle cx="245" cy="95" r="11" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="245" y="95" class="plabel">S</text>
+        <circle cx="228" cy="95" r="5" fill="#fff" stroke="#333"/>
+        <text x="220" y="170" class="txt-lo" text-anchor="middle">shoot from ~8 yds</text>
+        <!-- two shot paths to corners (dashed) -->
+        <path d="M222,90 L82,64" fill="none" stroke="#f2d024" stroke-width="2.5" stroke-dasharray="5 3" marker-end="url(#ay)"/>
+        <path d="M222,100 L82,128" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="5 3" marker-end="url(#aw)"/>
+      </svg>
+      <figcaption>Aim for the corner target cones (3 pts) past Dad the keeper.</figcaption>
+    </figure>
+  </div>
+
+  <!-- COOLDOWN -->
+  <div class="card cool">
+    <span class="time">0:55–1:00 · Cooldown</span>
+    <h3>Walk, Stretch &amp; Recap</h3>
+    <p><span class="lbl">Setup:</span> Drop everything and take a slow walking lap of your space together.</p>
+    <p><span class="lbl">How it works:</span> Easy walk for a minute to bring the heart rate down, then gentle stretches: calves, quads, hamstrings, and a few arm circles — hold each ~15 seconds. While you stretch, do the recap.</p>
+    <ul class="cues">
+      <li>Breathe slow and deep; no bouncing in the stretches.</li>
+      <li>Sip water throughout.</li>
+      <li><b>Recap one thing he did great today</b> — name it specifically (that sharp L-cut, a called-corner goal, never quitting a race).</li>
+    </ul>
+    <div class="fun"><b>Make it fun:</b> He picks tomorrow's "power word" and you both do the day's best celebration one more time to finish on a high.</div>
+    <figure>
+      <svg viewBox="0 0 320 150" role="img" aria-label="Cooldown walking loop with dad and son together">
+        <rect width="320" height="150" fill="url(#turf)"/>
+        <ellipse cx="160" cy="75" rx="115" ry="48" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <path d="M275,75 a115,48 0 0 1 -6,20" fill="none" stroke="#fff" stroke-width="2.5" marker-end="url(#aw)"/>
+        <circle cx="150" cy="27" r="11" fill="#2f6fd0" stroke="#fff" stroke-width="1.5"/><text x="150" y="27" class="plabel">S</text>
+        <circle cx="176" cy="27" r="11" fill="#7b46c9" stroke="#fff" stroke-width="1.5"/><text x="176" y="27" class="plabel">D</text>
+        <text x="160" y="80" class="txt-lo" text-anchor="middle">easy walking lap + stretch</text>
+      </svg>
+      <figcaption>Slow lap together, then stretch and recap the win of the day.</figcaption>
+    </figure>
+  </div>
+
+  <div class="footer">
+    <b>Hydration &amp; safety:</b> Water before, during, and after. Effort by feel, not pace — keep it fun and conversational. Stop right away if anything hurts, and let your son set the tone so he finishes wanting to come back tomorrow.
+  </div>
+
+</div>
+</body>
+</html>
