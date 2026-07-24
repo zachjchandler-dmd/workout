@@ -12,7 +12,12 @@ export default {
     };
     if (request.method === "OPTIONS") return new Response(null, { headers: cors });
     if (request.method !== "POST") {
-      return new Response("Workout skip logger is running.", { headers: cors });
+      const present = !!env.GH_TOKEN;
+      const len = env.GH_TOKEN ? String(env.GH_TOKEN).length : 0;
+      return new Response(
+        "Workout skip logger is running. token_set=" + present + " token_len=" + len,
+        { headers: cors }
+      );
     }
 
     let body;
