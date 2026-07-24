@@ -459,17 +459,25 @@
   <!-- SKIP LOG -->
   <div class="card" style="border:1px dashed #c2410c">
     <h3 style="margin:0 0 6px">Didn't get to it? Log a skip</h3>
-    <p style="margin:6px 0 12px;font-size:14px;color:var(--muted)">Tap to copy a quick note, then paste it into your Claude chat. Your plan only advances on sessions you actually finish, so logging a skip keeps the next one calibrated.</p>
-    <button onclick="copySkip('Please mark Friday, July 24 (soccer) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0 0 10px;padding:14px;border:none;border-radius:12px;background:#2f6fd0;color:#fff;font-size:15px;font-weight:700">We skipped THIS session — Fri Jul 24 · soccer</button>
-    <button onclick="copySkip('Please mark Thursday, July 23 (running) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0;padding:14px;border:none;border-radius:12px;background:#c2410c;color:#fff;font-size:15px;font-weight:700">We skipped the PREVIOUS session — Thu Jul 23 · running</button>
+    <p style="margin:6px 0 12px;font-size:14px;color:var(--muted)">Tap to log a skip — it records automatically and tomorrow's plan adjusts. Your plan only advances on sessions you actually finish.</p>
+    <button onclick="logSkip('Please mark Friday, July 24 (soccer) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0 0 10px;padding:14px;border:none;border-radius:12px;background:#2f6fd0;color:#fff;font-size:15px;font-weight:700">We skipped THIS session — Fri Jul 24 · soccer</button>
+    <button onclick="logSkip('Please mark Thursday, July 23 (running) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0;padding:14px;border:none;border-radius:12px;background:#c2410c;color:#fff;font-size:15px;font-weight:700">We skipped the PREVIOUS session — Thu Jul 23 · running</button>
     <div id="skipmsg" style="display:none;margin-top:12px;padding:11px 13px;border-radius:10px;background:#eef7ee;border-left:4px solid #4a8f5c;font-size:13.5px;color:#1f2933"></div>
   </div>
   <script>
-  function copySkip(msg){
-    var show=function(t){var m=document.getElementById('skipmsg');m.style.display='block';m.textContent=t;};
+  var SKIP_ENDPOINT = "https://workout.zachjchandler.workers.dev";
+  function logSkip(note){
+    var m=document.getElementById('skipmsg');
+    m.style.display='block'; m.textContent='Logging…';
+    fetch(SKIP_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note:note})})
+      .then(function(r){return r.json().catch(function(){return {ok:r.ok};});})
+      .then(function(d){ if(d&&d.ok){m.textContent='Logged ✓  Tomorrow’s plan will account for this skip.';} else {fallback(note,m);} })
+      .catch(function(){fallback(note,m);});
+  }
+  function fallback(note,m){
     if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(msg).then(function(){show('Copied ✓  Open your Claude chat and paste to log it: "'+msg+'"');},function(){show('Copy this into your Claude chat: "'+msg+'"');});
-    }else{show('Copy this into your Claude chat: "'+msg+'"');}
+      navigator.clipboard.writeText(note).then(function(){m.textContent='Couldn’t reach the logger — copied the note instead. Paste it into your Claude chat: "'+note+'"';},function(){m.textContent='Couldn’t reach the logger. Paste this into your Claude chat: "'+note+'"';});
+    } else { m.textContent='Couldn’t reach the logger. Paste this into your Claude chat: "'+note+'"'; }
   }
   </script>
 
