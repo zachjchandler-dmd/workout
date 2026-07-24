@@ -19,16 +19,17 @@ export default {
     try { body = await request.json(); } catch (e) {
       return json({ ok: false, error: "bad json" }, 400, cors);
     }
-    const note = String(body.note || "").slice(0, 300);
-    // light guard so the endpoint only accepts genuine skip notes
-    if (!/training log/i.test(note)) {
+    const note = String(body.note || "").slice(0, 500);
+    // light guard: accept status notes (training log) and drill-swap requests
+    if (!/training log/i.test(note) && !/SWAP REQUEST/i.test(note)) {
       return json({ ok: false, error: "rejected" }, 400, cors);
     }
 
     const owner = "zachjchandler-dmd";
     const repo = "workout";
     const id = Date.now() + "-" + Math.random().toString(36).slice(2, 8);
-    const path = "events/" + id + ".json";
+    const folder = /SWAP REQUEST/i.test(note) ? "swaps" : "events";
+    const path = folder + "/" + id + ".json";
     const payload = JSON.stringify({ note: note, at: new Date().toISOString() });
 
     const res = await fetch(

@@ -155,6 +155,7 @@
       </svg>
       <figcaption>Both dribble their own ball; Son shadows Dad's winding route ~2 yds back.</figcaption>
     </figure>
+    <button onclick="requestSwap('Shadow Dribble (Follow the Leader)')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- WARM-UP 2 -->
@@ -187,6 +188,7 @@
       </svg>
       <figcaption>Dad leads (white); Son mirrors every move (yellow).</figcaption>
     </figure>
+    <button onclick="requestSwap('Mirror Match (reaction / stop-start)')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- TECH 1 -->
@@ -219,6 +221,7 @@
       </svg>
       <figcaption>Ball rolls side-to-side under the sole; both work their own ball.</figcaption>
     </figure>
+    <button onclick="requestSwap('Sole-Roll Ball Mastery')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- TECH 2 -->
@@ -251,6 +254,7 @@
       </svg>
       <figcaption>Pass in (white), one-touch the return back (yellow), keep the chain alive.</figcaption>
     </figure>
+    <button onclick="requestSwap('Rebounder Wall One-Touch')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- TECH 3 -->
@@ -286,6 +290,7 @@
       </svg>
       <figcaption>Dribble the base (white), cut hard at the corner, accelerate up the L (yellow).</figcaption>
     </figure>
+    <button onclick="requestSwap('L-Cut Cone Dribble')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- S&A 1 -->
@@ -327,6 +332,7 @@
       </svg>
       <figcaption>Sticks → hurdles → explode through the 10 yd sprint finish.</figcaption>
     </figure>
+    <button onclick="requestSwap('Speed-Stick + Trapezoid Combo Course')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- S&A 2 -->
@@ -363,6 +369,7 @@
       </svg>
       <figcaption>Race the arc to the finish; Dad's stagger keeps it close.</figcaption>
     </figure>
+    <button onclick="requestSwap('Curved Acceleration Races (with handicap)')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- GAME 1 -->
@@ -398,6 +405,7 @@
       </svg>
       <figcaption>Son dribbles and cuts past Dad (white), then finishes into the cone goal (yellow shot).</figcaption>
     </figure>
+    <button onclick="requestSwap('1v1 King of the Hill')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- GAME 2 -->
@@ -435,6 +443,7 @@
       </svg>
       <figcaption>Aim for the corner target cones (3 pts) past Dad the keeper.</figcaption>
     </figure>
+    <button onclick="requestSwap('Target Shooting Challenge')" style="margin-top:10px;padding:7px 12px;border:1px solid #cbd5e0;border-radius:9px;background:#fff;color:#5c6b7a;font-size:12.5px;font-weight:600;cursor:pointer">🔁 Swap this drill</button>
   </div>
 
   <!-- COOLDOWN -->
@@ -486,6 +495,16 @@
     fetch(SKIP_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note:note})})
       .then(function(r){return r.json().catch(function(){return {ok:false};});})
       .then(function(d){ if(d&&d.ok){ m.textContent = /SKIPPED/.test(note) ? 'Logged ✓  Tomorrow’s plan will adjust.' : 'Awesome — logged! ✓ Your streak updates on tomorrow’s plan.'; } else {fallback(note,m);} })
+      .catch(function(){fallback(note,m);});
+  }
+  function requestSwap(name){
+    var why=prompt('Swap out "'+name+'"? Add a quick note on why (optional):','');
+    if(why===null) return;
+    var note='SWAP REQUEST for Friday, July 24 — replace the drill "'+name+'". Reason: '+(why||'(no reason given)');
+    var m=document.getElementById('skipmsg'); m.style.display='block'; m.textContent='Sending swap request…';
+    fetch(SKIP_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note:note})})
+      .then(function(r){return r.json().catch(function(){return {ok:false};});})
+      .then(function(d){ if(d&&d.ok){m.textContent='Swap requested ✓ — I’ll replace “'+name+'” before your next morning session and refresh this page.';} else {fallback(note,m);} })
       .catch(function(){fallback(note,m);});
   }
   function fallback(note,m){
