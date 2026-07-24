@@ -91,6 +91,12 @@
     <p class="gear"><b>Gear today:</b> cones · speed sticks · trapezoid hurdles · soccer balls · rebounding wall</p>
   </header>
 
+  <div class="card" style="text-align:center;background:linear-gradient(135deg,#ffffff,#eef7ee);border:1px solid #cfe6d3">
+    <div style="font-size:32px;line-height:1">🔥</div>
+    <div style="font-size:22px;font-weight:800;color:#2f7a45;margin-top:2px">0-session streak</div>
+    <div style="font-size:13.5px;color:#5c6b7a;margin-top:3px">This is session #1 — finish today and you're on the board. Log it at the bottom when you're done!</div>
+  </div>
+
   <div class="suggestion" style="border-style:solid;border-color:#4a8f5c">
     <b style="color:#2f7a45">First session — keep it light &amp; fun.</b> This is your very first workout together, so treat every time and rep target below as a ceiling, not a goal. Do fewer reps, stop each drill while he's still enjoying it, and let him win a little. The #1 job today is that he finishes wanting to come back Monday.
   </div>
@@ -456,22 +462,30 @@
     </figure>
   </div>
 
-  <!-- SKIP LOG -->
-  <div class="card" style="border:1px dashed #c2410c">
-    <h3 style="margin:0 0 6px">Didn't get to it? Log a skip</h3>
-    <p style="margin:6px 0 12px;font-size:14px;color:var(--muted)">Tap to log a skip — it records automatically and tomorrow's plan adjusts. Your plan only advances on sessions you actually finish.</p>
-    <button onclick="logSkip('Please mark Friday, July 24 (soccer) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0 0 10px;padding:14px;border:none;border-radius:12px;background:#2f6fd0;color:#fff;font-size:15px;font-weight:700">We skipped THIS session — Fri Jul 24 · soccer</button>
-    <button onclick="logSkip('Please mark Thursday, July 23 (running) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0;padding:14px;border:none;border-radius:12px;background:#c2410c;color:#fff;font-size:15px;font-weight:700">We skipped the PREVIOUS session — Thu Jul 23 · running</button>
+  <!-- AFTER YOUR SESSION -->
+  <div class="card" style="border:1px solid #cfe6d3">
+    <h3 style="margin:0 0 4px">How’d it go?</h3>
+    <p style="margin:4px 0 12px;font-size:14px;color:var(--muted)">Tap one when you finish — it logs the session and grows your streak on tomorrow’s plan.</p>
+    <button onclick="logEvent('Please mark Friday, July 24 (soccer) as COMPLETED in the training log. It felt: just right.')" style="display:block;width:100%;margin:0 0 8px;padding:15px;border:none;border-radius:12px;background:#2f8f4e;color:#fff;font-size:16px;font-weight:800">👍 We did it — just right</button>
+    <div style="display:flex;gap:8px">
+      <button onclick="logEvent('Please mark Friday, July 24 (soccer) as COMPLETED in the training log. It felt: too easy.')" style="flex:1;padding:12px;border:none;border-radius:12px;background:#e8f2ea;color:#2f7a45;font-size:14px;font-weight:700">😅 Too easy</button>
+      <button onclick="logEvent('Please mark Friday, July 24 (soccer) as COMPLETED in the training log. It felt: too hard.')" style="flex:1;padding:12px;border:none;border-radius:12px;background:#fbeee6;color:#c2410c;font-size:14px;font-weight:700">😓 Too hard</button>
+    </div>
+    <div style="margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+      <p style="margin:0 0 8px;font-size:13px;color:var(--muted)">Didn't get to it? Log a skip so your streak stays honest:</p>
+      <button onclick="logEvent('Please mark Friday, July 24 (soccer) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0 0 8px;padding:12px;border:1px solid #cbd5e0;border-radius:12px;background:#fff;color:#5c6b7a;font-size:14px;font-weight:600">Skipped this session — Fri Jul 24 · soccer</button>
+      <button onclick="logEvent('Please mark Thursday, July 23 (running) as SKIPPED in the training log.')" style="display:block;width:100%;margin:0;padding:12px;border:1px solid #cbd5e0;border-radius:12px;background:#fff;color:#5c6b7a;font-size:14px;font-weight:600">Skipped previous — Thu Jul 23 · running</button>
+    </div>
     <div id="skipmsg" style="display:none;margin-top:12px;padding:11px 13px;border-radius:10px;background:#eef7ee;border-left:4px solid #4a8f5c;font-size:13.5px;color:#1f2933"></div>
   </div>
   <script>
   var SKIP_ENDPOINT = "https://workout.zachjchandler.workers.dev";
-  function logSkip(note){
+  function logEvent(note){
     var m=document.getElementById('skipmsg');
-    m.style.display='block'; m.textContent='Logging…';
+    m.style.display='block'; m.textContent='Saving…';
     fetch(SKIP_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note:note})})
       .then(function(r){return r.json().catch(function(){return {ok:false};});})
-      .then(function(d){ if(d&&d.ok){m.textContent='Logged ✓  Tomorrow’s plan will account for this skip.';} else {fallback(note,m);} })
+      .then(function(d){ if(d&&d.ok){ m.textContent = /SKIPPED/.test(note) ? 'Logged ✓  Tomorrow’s plan will adjust.' : 'Awesome — logged! ✓ Your streak updates on tomorrow’s plan.'; } else {fallback(note,m);} })
       .catch(function(){fallback(note,m);});
   }
   function fallback(note,m){

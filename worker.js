@@ -28,7 +28,7 @@ export default {
     const owner = "zachjchandler-dmd";
     const repo = "workout";
     const id = Date.now() + "-" + Math.random().toString(36).slice(2, 8);
-    const path = "skips/" + id + ".json";
+    const path = "events/" + id + ".json";
     const payload = JSON.stringify({ note: note, at: new Date().toISOString() });
 
     const res = await fetch(
