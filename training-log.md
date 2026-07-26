@@ -13,4 +13,5 @@ Difficulty advances on COMPLETED sessions of that type, not the calendar.
 2026-07-21 | RUNNING | SKIPPED | not performed (confirmed by Zach 07-23)
 2026-07-22 | SOCCER | SKIPPED | not performed (confirmed by Zach 07-23)
 2026-07-23 | RUNNING | SKIPPED | not performed (confirmed by Zach 07-23)
-2026-07-24 | SOCCER | PLANNED | SOCCER SESSION #1 (first completed session basis). WU: Shadow Dribble / follow-the-leader (2-person) + Mirror Match (reaction); Tech: sole-roll ball mastery, rebounder one-touch, L-cut cone dribble; S&A: speed-stick + trapezoid combo course, curved acceleration races; Game: 1v1 King of the Hill + target shooting challenge (scored); CD: walk + stretch + recap
+2026-07-24 | SOCCER | SKIPPED | not performed (logged via status tap 2026-07-25)
+2026-07-27 | SOCCER | PLANNED | SOCCER SESSION #1 (fresh basis, streak 0). WU: Passing Gates (moving ball) + Traffic Light Dribble (reaction); Tech: Ball Mastery Foundations, Rebounder Wall One-Touch; S&A: Weave–Hurdle–Sprint Course + head-start races; Game: 1v1 to Mini-Goals + Shooting Points (scored); CD: walk + stretch + recap
